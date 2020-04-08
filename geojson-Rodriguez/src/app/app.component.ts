@@ -45,6 +45,20 @@ export class AppComponent {
 
 
   ngOnInit() {
+    /*this.markers = [];
+    for (let feature of  this.geoJsonObject.features)
+    {
+      queste due righe ci avevo pensato
+      guardando questo commento -> questo coordinates[0][0][0] ottiene la longitudine)
+      let lng = feature.geometry.coordinates[0][0][0];
+      let lat = feature.geometry.coordinates[0][0][1];
+
+
+      let id = String(this.geoJsonObject.features[0].properties.id);
+      let marker : Marker = new Marker(lat, lng, id);
+      this.markers.push(marker);
+    }*/
+
     this.markers = [
       {
         //features[0] seleziona il primo geoJson
@@ -63,5 +77,6 @@ export class AppComponent {
       }
     ]
   }
+
 
 }
