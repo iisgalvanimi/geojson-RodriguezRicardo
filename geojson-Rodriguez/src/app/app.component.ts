@@ -23,21 +23,45 @@ export class AppComponent {
     //Questi dati dovremmo scaricarli dal server, per ora li abbiamo copiati nel file geojson.model.ts
     this.geoJsonObject = GEOJSON;
     console.log(this.geoJsonObject); //stampo l'oggetto geoJsonObject sulla console
-    console.log(this.geoJsonObject.features[0].geometry.coordinates); //visualizzo le coordinate
+    console.log(Array(1)); //visualizzo le coordinate prima features
   }
 
 
 
   styleFunc = (feature) =>{
-    console.log(feature.i.id)
-    let newColor = "#FF0000"; //RED
-    if(feature.i.id == 0) newColor = "#00FF00"; //GREEN
-    else newColor = "#0000FF"; //BLUE
+    console.log(feature.i.id) //mostra id dei poligoni della classe geojson.model.ts
+    let newColor = "#FF0000"; //RED    variabile che contiene il colore rosoo
+    if(feature.i.id == 0) newColor = "#00FF00"; //GREEN     se id==0 sarà di colore verdela zona catastale
+    else newColor = "#0000FF"; //BLUE   se no sarà blu
     return ({
-      clickable: false,
-      fillColor: newColor,
-      strokeWeight: 1
+      clickable: false,     //se viene cliccato non succede niente
+      fillColor: newColor,   //viene riempito con il colore scelto
+      strokeWeight: 1   //grandezza del contorno della zona catastale
     });
+  }
+
+
+
+
+
+  ngOnInit() {
+    this.markers = [
+      {
+        //features[0] seleziona il primo geoJson
+        //coordinates[0] ottiene la lista di poligoni.
+        //coordinates[0][0] ottiene il primo (e unico) poligono della lista
+        //coordinates[0][0][0] ottiene la longitudine
+        //coordinates[0][0][1] ottiene la latitudine
+        lng: this.geoJsonObject.features[0].geometry.coordinates[0][0][0],
+        lat: this.geoJsonObject.features[0].geometry.coordinates[0][0][1],
+        label: String(this.geoJsonObject.features[0].properties.id),
+      },
+      {
+        lng: this.geoJsonObject.features[1].geometry.coordinates[0][0][0],
+        lat: this.geoJsonObject.features[1].geometry.coordinates[0][0][1],
+        label: String(this.geoJsonObject.features[1].properties.id),
+      }
+    ]
   }
 
 }
