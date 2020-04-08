@@ -15,7 +15,11 @@ export class GeoFeatureCollection
     public features : GeoJson[];
 }
 
-
+class Marker {
+  lng: number;
+  lat: number;
+  label?: string;
+}
 
 export const GEOJSON = {
     "type": "FeatureCollection",
