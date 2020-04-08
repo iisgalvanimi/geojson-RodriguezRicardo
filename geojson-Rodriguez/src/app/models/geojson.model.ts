@@ -15,7 +15,7 @@ export class GeoFeatureCollection
     public features : GeoJson[];
 }
 
-class Marker {
+export class Marker {
   lng: number;
   lat: number;
   label?: string;
